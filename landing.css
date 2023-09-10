@@ -442,6 +442,7 @@ padding-bottom: 10px;
   margin: 0 2em;
   overflow: hidden;
   z-index: 99;
+  background-color: #996633;
 
 }
 
@@ -480,7 +481,7 @@ padding-bottom: 10px;
   display:flex;
   align-items:center;
   flex-direction:column;
-  background-color: #996633 !important;
+/*   background-color: #996633 !important; */
   padding-bottom: 2em;
   border-top-left-radius: 100px;
   z-index: 99999;
