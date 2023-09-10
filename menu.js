@@ -1,0 +1,78 @@
+const product=[
+  {
+    id:0,
+    image:'images/menuIMG/Cup-Of-Creamy-Coffee-500x500-removebg-preview.png',
+    title:'Cup of Creamy Coffee',
+    price:120,
+  },  {
+    id:1,
+    image:'images/menuIMG/flat-white-3402c4f-removebg-preview.png',
+    title:'Flat White Coffee',
+    price:100,
+  },  {
+    id:2,
+    image:'images/menuIMG/Coffee_LYK__1_-removebg-preview.png',
+    title:'Hot Coffee',
+    price:80,
+  },  {
+    id:3,
+    image:'images/menuIMG/coffee_its_benefits_898_1_-removebg-preview.png',
+    title:'Flat White Coffee',
+    price:110,
+  }
+];
+const categories=[...new Set(product.map((item)=>{return item}))]
+let i=0;
+document.getElementById('root').innerHTML=categories.map((item)=>
+{
+  var {image,title,price}=item;
+  return(
+    `<div class='box'>
+       <div class='img-box'>
+          <img class='images' src=${image}></img>
+       </div>
+       <div class='bottom'>
+       <p>${title}</p>
+       <h2>$ ${price}.00</h2>` + "<button onclick='addtocart("+(i++)+")'>Add to cart</button>" +
+       `</div>
+       </div>`
+
+       
+  )
+}).join('');
+
+var cart=[];
+function addtocart(a){
+  cart.push({...categories[a]});
+  displaycart();
+}
+function displaycart(a){
+  let j=0,total=0;
+  document.getElementById("count").innerHTML=cart.length;
+  if(cart.length==0){
+    document.getElementById('cartItem').innerHTML="Your cart is empty";
+    document.getElementById("total").innerHTML="$" + ".00";
+  }
+  else{
+    document.getElementById('cartItem').innerHTML=cart.map((items)=>
+    {
+      var{image,title,price}=items;
+      total=total+price;
+      document.getElementById("total").innerHTML="$ " +total +".00";
+      return(
+        `<div class='cart-item'>
+           <div class='row-img'>
+             <img class='rowing' src=${image}>
+           </div>
+           <p style='font-size:15px;'>${title}</p>
+           <h2 style='font-size:15px;'>$ ${price}.00</h2>`+
+           "<i class='fa-solid fa-trash' onclick='delElement(" + (j++) + " )'></i> </div>"
+      );
+    }).join('');
+
+  }
+}
+function delElement(a){
+cart.splice(a,1);
+displaycart();
+}
